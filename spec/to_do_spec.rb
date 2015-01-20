@@ -9,7 +9,13 @@ describe(Todo) do
     end
   end
 
-  describe('.save') do
+  describe('.all') do
+    it('is empty at first') do
+      expect(Todo.all()).to(eq([]))
+    end
+  end
+
+  describe('#save') do
     it('saves description') do
       test_todo = Todo.new({:description => "scrub the zebra"})
       test_todo.save()
