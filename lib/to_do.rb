@@ -1,20 +1,23 @@
 class Todo
 
   attr_reader(:description)
-  @@todo_list = []
 
   define_method(:initialize) do |attributes|
     @description = attributes.fetch(:description)
   end
 
-  define_method(:==) do |other|
-    same_class = self.class().eql?(other.class())
-    same_name = self.description().eql?(other.description())
-    same_class.&(same_name)
+  define_method(:==) do |another_todo|
+    self.description().==(another_todo.description())
   end
 
   define_singleton_method(:all) do
-    @@todo_list
+    returned_descriptions = DB.exec("SELECT * FROM descriptions;")
+    todos = []
+    returned_descriptions.each() do |todo|
+      description = todo.fetch("description")
+      todos.push(Todo.new({:description => description}))
+    end
+    todos
   end
 
   define_method(:save) do
