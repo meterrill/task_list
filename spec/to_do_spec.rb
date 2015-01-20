@@ -14,8 +14,15 @@ describe(Todo) do
 
   describe("#description") do
     it("lets you give it a description") do
-      test_todo = Todo.new({:description => "scrub the zebra"})
+      test_todo = Todo.new({:description => "scrub the zebra", :list_id => 1})
       expect(test_todo.description).to(eq("scrub the zebra"))
+    end
+  end
+
+  describe("#list_id") do
+    it("lets you give it a list_id") do
+      test_todo = Todo.new({:description => "scrub the zebra", :list_id => 1})
+      expect(test_todo.list_id).to(eq(1))
     end
   end
 
@@ -27,7 +34,7 @@ describe(Todo) do
 
   describe('#save') do
     it('saves description') do
-      test_todo = Todo.new({:description => "scrub the zebra"})
+      test_todo = Todo.new({:description => "scrub the zebra", :list_id => 1})
       test_todo.save()
       expect(Todo.all()).to(eq([test_todo]))
     end
@@ -35,8 +42,8 @@ describe(Todo) do
 
   describe("#==") do
     it('is the same todo if it has the same description') do
-      todo1 = Todo.new({:description => "scrub the zebra"})
-      todo2 = Todo.new({:description => "scrub the zebra"})
+      todo1 = Todo.new({:description => "scrub the zebra", :list_id => 1})
+      todo2 = Todo.new({:description => "scrub the zebra", :list_id => 1})
       expect(todo1).to(eq(todo2))
     end
   end
