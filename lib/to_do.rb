@@ -11,7 +11,7 @@ class Todo
   end
 
   define_singleton_method(:all) do
-    returned_descriptions = DB.exec("SELECT * FROM descriptions;")
+    returned_descriptions = DB.exec("SELECT * FROM todos;")
     todos = []
     returned_descriptions.each() do |todo|
       description = todo.fetch("description")
