@@ -1,16 +1,15 @@
 class Todo
 
-  attr_reader(:id, :description)
+  attr_reader(:description)
   @@todo_list = []
 
   define_method(:initialize) do |attributes|
     @description = attributes.fetch(:description)
-    @id = attributes.fetch(:id)
   end
 
-  define_method(:==) do |name|
+  define_method(:==) do |other|
     same_class = self.class().eql?(other.class())
-    same_name - self.name().eql?(other.name())
+    same_name = self.description().eql?(other.description())
     same_class.&(same_name)
   end
 
