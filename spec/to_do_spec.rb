@@ -1,11 +1,8 @@
 require('rspec')
+require('pg')
 require('to_do')
 
 describe(Todo) do
-
-  before() do
-    Todo.clear()
-  end
 
   describe("#description") do
     it("lets you give it a description") do

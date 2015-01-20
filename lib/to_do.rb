@@ -8,6 +8,12 @@ class Todo
     @id = attributes.fetch(:id)
   end
 
+  define_method(:==) do |name|
+    same_class = self.class().eql?(other.class())
+    same_name - self.name().eql?(other.name())
+    same_class.&(same_name)
+  end
+
   define_singleton_method(:all) do
     @@todo_list
   end
