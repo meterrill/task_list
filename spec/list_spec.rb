@@ -1,7 +1,7 @@
 require('spec_helper')
 
 describe(List) do
-  
+
   describe(".all") do
     it("starts off with no lists") do
       expect(List.all()).to(eq([]))
@@ -36,6 +36,16 @@ describe(List) do
       list1 = List.new({:name => "Epicodus stuff", :id => nil})
       list2 = List.new({:name => "Epicodus stuff", :id => nil})
       expect(list1).to(eq(list2))
+    end
+  end
+
+  describe(".find") do
+    it("returns a list by its ID number") do
+      test_list = List.new({:name => "Epicodus stuff", :id => nil})
+      test_list.save()
+      test_list2 = List.new({:name => "Home stuff", :id => nil})
+      test_list2.save()
+      expect(List.find(test_list2.id())).to(eq(test_list2))
     end
   end
 end
