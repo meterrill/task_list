@@ -8,7 +8,7 @@ class Todo
   end
 
   define_method(:==) do |another_todo|
-    self.description().==(another_todo.description())
+    self.description().==(another_todo.description()).&(self.list_id().==(another_todo.list_id()))
   end
 
   define_singleton_method(:all) do
@@ -16,7 +16,7 @@ class Todo
     todos = []
     returned_descriptions.each() do |todo|
       description = todo.fetch("description")
-      list_id = todo.fetch("list_id")
+      list_id = todo.fetch("list_id").to_i()
       todos.push(Todo.new({:description => description, :list_id => list_id}))
     end
     todos

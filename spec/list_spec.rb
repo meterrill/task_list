@@ -1,16 +1,7 @@
-require('rspec')
-require('pg')
-require('list')
-
-DB = PG.connect({:dbname => 'todo_test'})
-
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM lists *;")
-  end
-end
+require('spec_helper')
 
 describe(List) do
+  
   describe(".all") do
     it("starts off with no lists") do
       expect(List.all()).to(eq([]))
