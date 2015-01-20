@@ -19,7 +19,15 @@ describe(Todo) do
     it('saves description') do
       test_todo = Todo.new({:description => "scrub the zebra"})
       test_todo.save()
-      expect(Todo.todo_list()).to(eq(test_todo))
+      expect(Todo.all()).to(eq([test_todo]))
+    end
+  end
+
+  describe('.clear') do
+    it('clears the todo list array') do
+      test_todo = Todo.new({:description => "scrub the zebra"})
+      test_todo.save()
+      expect(Todo.clear()).to(eq([]))
     end
   end
 end
