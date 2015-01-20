@@ -35,4 +35,15 @@ class List
     end
     found_list
   end
+
+  define_method(:todos) do
+    list_todos = []
+    todos = DB.exec("SELECT * FROM todos WHERE list_id = #{self.id()};")
+    todos.each() do |todos|
+      description = todos.fetch("description")
+      list_id = todos.fetch("list_id").to_i()
+      list_todos.push(Todo.new({:description => description, :list_id => list_id}))
+    end
+    list_todos
+  end
 end
