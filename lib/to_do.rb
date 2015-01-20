@@ -21,7 +21,7 @@ class Todo
   end
 
   define_method(:save) do
-    @@todo_list.push(self)
+    DB.exec("INSERT INTO todos (description) VALUES ('#{@description}');")
   end
 
   define_singleton_method(:clear) do
