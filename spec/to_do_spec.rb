@@ -9,7 +9,7 @@ describe(Todo) do
     end
   end
 
-  describe('#save') do
+  describe('.save') do
     it('saves description') do
       test_todo = Todo.new({:description => "scrub the zebra"})
       test_todo.save()
